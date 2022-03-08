@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextjs
+  labels:
+    app: nextjs-docker-k8
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nextjs-docker-k8
+  template:
+    metadata:
+      labels:
+        app: nextjs-docker-k8
+    spec:
+      containers:
+        - name: nextjs-docker-k8
+          image: nextjs
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+              targetPort: 3000
